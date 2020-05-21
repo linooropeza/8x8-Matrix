@@ -21,9 +21,6 @@ rows    = [17, 27, 22, 05, 06, 13, 19, 26]
 columns = [18, 23, 24, 25, 12, 16, 20, 21] 
 matrix = Matrix.new rows, columns
 
-capital_letters = read_json
-
-
 begin
 	while true
 		matrix.string "HI DARLING", 0.5
