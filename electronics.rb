@@ -8,11 +8,7 @@ require_relative 'matrix.rb'
 RPi::GPIO.set_numbering :bcm
 
 
-def read_json
-	json = File.read('json/capital_letters.json')
-	JSON.parse(json)
-	
-end
+
 
 # It clears the board and realeases the GPIO pins
 def clear_board
@@ -30,11 +26,8 @@ capital_letters = read_json
 
 begin
 	while true
-		# matrix.test
-		capital_letters.each do |key, frame|
-			puts "Writing #{key}"
-			matrix.frame frame, 0.5
-			sleep 0.25
+		matrix.string "HI DARLING", 0.5
+		sleep 1
 		end
 	end 
 	rescue SignalException => e

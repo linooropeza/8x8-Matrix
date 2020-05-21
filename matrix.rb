@@ -11,6 +11,7 @@ class Matrix
 		# of the LEDs and the columns to the cathodes
 		@rows = rows
 		@columns = columns
+		@letters_capital = read_json 'json/capital_letters.json'
 		
 		# Setting up the Matrix to off
 		@rows.each do |pin|
@@ -36,6 +37,17 @@ class Matrix
 		end
 	end
 	
+	def string string, delay
+		words = string.split(' ')
+		words.each do |word|
+			letters = word.chars
+			letters.each do |letter|
+				frame @letters_capital[letter.upcase], delay
+			end
+			sleep delay/2
+		end
+	end
+	
 	def frame frame, delay
 		# The frame is a matrix with the same ammount of rows and columns
 		# than the marix
@@ -55,6 +67,12 @@ class Matrix
 			time_current = Process.clock_gettime(Process::CLOCK_MONOTONIC)
 		break if time_current - time_start > delay
 		end
+	end
+
+	private
+	def read_json json_file
+		json = File.read(json_file)
+		JSON.parse(json)
 	end
 
 end
