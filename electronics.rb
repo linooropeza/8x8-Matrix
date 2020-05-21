@@ -31,8 +31,11 @@ capital_letters = read_json
 begin
 	while true
 		# matrix.test
-		matrix.frame capital_letters["A"], 2
-		sleep 2
+		capital_letters.each do |key, frame|
+			puts "Writing #{key}"
+			matrix.frame frame, 2
+			sleep 0.5
+		end
 	end 
 	rescue SignalException => e
     clear_board
