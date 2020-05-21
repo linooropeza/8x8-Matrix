@@ -23,7 +23,7 @@ matrix = Matrix.new rows, columns
 
 begin
 	while true
-		matrix.string "Hola", 0.75
+		matrix.string "I do not know", 0.5
 		sleep 1
 	end 
 	rescue SignalException => e
