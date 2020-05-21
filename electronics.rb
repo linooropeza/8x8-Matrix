@@ -25,7 +25,6 @@ begin
 	while true
 		matrix.string "HI DARLING", 0.5
 		sleep 1
-		end
 	end 
 	rescue SignalException => e
     clear_board
