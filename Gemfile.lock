@@ -1,12 +1,14 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    json (2.3.0)
     rpi_gpio (0.3.3)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
+  json (~> 2.3)
   rpi_gpio (~> 0.3.3)
 
 BUNDLED WITH

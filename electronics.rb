@@ -1,5 +1,6 @@
 # Gems
 require 'rpi_gpio'
+require 'json'
 
 # Libraries
 require_relative 'matrix.rb'
@@ -10,6 +11,14 @@ RPi::GPIO.set_numbering :bcm
 
 
 
+def read_json
+	json = File.read('json/capital_letters.json')
+	JSON.parse(json)
+	
+end
+
+
+# It clears the board and realeases the GPIO pins
 def clear_board
 	RPi::GPIO.reset
 	puts 'The board has been cleared'
@@ -21,21 +30,14 @@ rows    = [17, 27, 22, 05, 06, 13, 19, 26]
 columns = [18, 23, 24, 25, 12, 16, 20, 21] 
 matrix = Matrix.new rows, columns
 
-frame = [# 1  2  3  4  5  6  7  8
-					[0, 1, 1, 0, 0, 1, 1, 0], # 1
-					[0, 1, 1, 0, 0, 1, 1, 0], # 2
-					[0, 0, 0, 1, 1, 0, 0, 0], # 3
-					[0, 0, 0, 1, 1, 0, 0, 0], # 4
-					[0, 1, 0, 0, 0, 0, 1, 0], # 5
-					[0, 1, 1, 1, 1, 1, 1, 0], # 6
-					[0, 0, 1, 1, 1, 1, 0, 0], # 7
-					[0, 0, 0, 0, 0, 0, 0, 0]  # 8				
-]
+capital_letters = read_json
+
 
 begin
 	while true
 		# matrix.test
-		matrix.frame frame
+		matrix.frame capital_letters["A"], 2
+		sleep 2
 	end 
 	rescue SignalException => e
     clear_board

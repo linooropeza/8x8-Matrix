@@ -36,20 +36,24 @@ class Matrix
 		end
 	end
 	
-	def frame frame
+	def frame frame, delay
 		# The frame is a matrix with the same ammount of rows and columns
 		# than the marix
-		frame.each_index do |row|
-			frame[row].each_index do |column|
-				if frame[row][column] == 1 
-					RPi::GPIO.set_high @rows[row]
-					RPi::GPIO.set_low @columns[column]
-					sleep DELAY
-					RPi::GPIO.set_low @rows[row]
-					RPi::GPIO.set_high @columns[column]
+		time_start = Process.clock_gettime(Process::CLOCK_MONOTONIC)
+		loop do
+			frame.each_index do |row|
+				frame[row].each_index do |column|
+					if frame[row][column] == 1 
+						RPi::GPIO.set_high @rows[row]
+						RPi::GPIO.set_low @columns[column]
+						sleep DELAY
+						RPi::GPIO.set_low @rows[row]
+						RPi::GPIO.set_high @columns[column]
+					end
 				end
 			end
-		end
+			time_current = Process.clock_gettime(Process::CLOCK_MONOTONIC)
+		break if time_current - time_start > delay
 	end
 
 end
