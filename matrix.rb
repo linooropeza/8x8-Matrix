@@ -44,7 +44,7 @@ class Matrix
 			letters.each do |letter|
 				frame @letters_capital[letter.upcase], delay
 			end
-			sleep delay/2
+			sleep delay
 		end
 	end
 	
