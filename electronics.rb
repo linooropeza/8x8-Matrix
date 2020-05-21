@@ -33,7 +33,7 @@ begin
 		# matrix.test
 		capital_letters.each do |key, frame|
 			puts "Writing #{key}"
-			matrix.frame frame, 2
+			matrix.frame frame, 1
 			sleep 0.5
 		end
 	end 
