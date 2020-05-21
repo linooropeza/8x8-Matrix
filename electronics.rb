@@ -33,8 +33,8 @@ begin
 		# matrix.test
 		capital_letters.each do |key, frame|
 			puts "Writing #{key}"
-			matrix.frame frame, 1
-			sleep 0.5
+			matrix.frame frame, 0.5
+			sleep 0.25
 		end
 	end 
 	rescue SignalException => e
