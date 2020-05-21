@@ -54,6 +54,7 @@ class Matrix
 			end
 			time_current = Process.clock_gettime(Process::CLOCK_MONOTONIC)
 		break if time_current - time_start > delay
+		end
 	end
 
 end

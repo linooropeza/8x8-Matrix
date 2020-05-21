@@ -7,9 +7,6 @@ require_relative 'matrix.rb'
 
 RPi::GPIO.set_numbering :bcm
 
-# RPi::GPIO.setup PIN_NUM, :as => :output, :initialize => :high
-
-
 
 def read_json
 	json = File.read('json/capital_letters.json')
@@ -17,13 +14,11 @@ def read_json
 	
 end
 
-
 # It clears the board and realeases the GPIO pins
 def clear_board
 	RPi::GPIO.reset
 	puts 'The board has been cleared'
 end
-
 
 # Setup
 rows    = [17, 27, 22, 05, 06, 13, 19, 26]
