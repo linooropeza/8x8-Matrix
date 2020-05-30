@@ -4,7 +4,7 @@ class Matrix
 
 	DELAY = 0.0000000001
 	
-	def initialize rows, columns
+  def initialize rows, columns
 		# Rows and columns are arrays containing the pin values
 		# of the rows and columns of the LED Matrix
 		# This class assumes that the rows are connected to the anodes
