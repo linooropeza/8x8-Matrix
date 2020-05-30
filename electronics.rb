@@ -23,8 +23,10 @@ matrix = Matrix.new rows, columns
 
 begin
 	while true
-		matrix.string "I do not know", 0.5
+		matrix.string "Bitch please", 0.5
 		sleep 1
+		matrix.string "Yes I am sassy", 0.5
+
 	end 
 	rescue SignalException => e
     clear_board
