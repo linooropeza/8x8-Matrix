@@ -66,10 +66,12 @@ class LED_Matrix
           RPi::GPIO.set_high @columns[column]
         end
       end
-      sleep DELAY # Adds a little break between letters
 
       time_current = Process.clock_gettime(Process::CLOCK_MONOTONIC)
-      break if time_current - time_start > delay
+      if time_current - time_start > delay
+        sleep DELAY # Adds a little break between letters
+        break
+      end
     end
   end
 
