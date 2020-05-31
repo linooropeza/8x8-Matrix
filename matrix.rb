@@ -55,8 +55,8 @@ class LED_Matrix
     # than the marix
     time_start = Process.clock_gettime(Process::CLOCK_MONOTONIC)
     loop do
-      @rows.times do |row|
-        @columns.times do |column|
+      @rows.length.times do |row|
+        @columns.length.times do |column|
           next unless ((frame[row] << column) & 0b10000000).positive?
 
           RPi::GPIO.set_high @rows[row]
