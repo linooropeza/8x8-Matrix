@@ -76,9 +76,9 @@ class LED_Matrix
 
   def read_json(json_file)
     directory = __dir__
-    directory = File.join directory, json
+    directory = File.join directory, 'json'
     json = File.read File.join(directory, json_file)
     characters = JSON.parse(json)
-    characters.map { |k, v| [k, v.to_i(2)] }.to_h
+    characters.map { |k, v| [k, v.map { |num| num.to_i(2) }] }.to_h
   end
 end

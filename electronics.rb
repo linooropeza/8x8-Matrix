@@ -18,10 +18,11 @@ end
 # Setup
 rows    = [17, 27, 22, 0o5, 0o6, 13, 19, 26]
 columns = [18, 23, 24, 25, 12, 16, 20, 21]
-matrix = Matrix.new rows, columns
+matrix = LED_Matrix.new rows, columns
 
 begin
   loop do
+    matrix.string 'Hello', 0.5
   end
 rescue SignalException => e
   clear_board
