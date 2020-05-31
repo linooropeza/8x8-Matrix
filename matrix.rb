@@ -69,7 +69,7 @@ class LED_Matrix
 
       time_current = Process.clock_gettime(Process::CLOCK_MONOTONIC)
       if time_current - time_start > delay
-        sleep DELAY # Adds a little break between letters
+        sleep delay # Adds a little break between letters
         break
       end
     end
