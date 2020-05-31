@@ -4,6 +4,7 @@ require 'rpi_gpio'
 
 class LED_Matrix
   DELAY = 0.0000000001
+  SPACE_DELAY = 0.25
 
   def initialize(rows, columns)
     # Rows and columns are arrays containing the pin values
@@ -46,16 +47,29 @@ class LED_Matrix
       letters.each do |letter|
         frame @letters_capital[letter.upcase], delay
       end
-      sleep delay
+      sleep SPACE_DELAY
     end
   end
 
-  def frame(frame, delay)
+  def frame(frame, delay, options={delay_between_chars: true})
     # The frame is a matrix with the same ammount of rows and columns
     # than the marix
     time_start = Process.clock_gettime(Process::CLOCK_MONOTONIC)
     loop do
-      @rows.length.times do |row|
+      show_frame frame, delay
+
+      time_current = Process.clock_gettime(Process::CLOCK_MONOTONIC)
+      if time_current - time_start > delay
+        sleep 0.25 if options[:delay_between_chars] # Adds a little break between letters
+        break
+      end
+    end
+  end
+
+  private
+  
+  def show_frame frame, delay
+	@rows.length.times do |row|
         @columns.length.times do |column|
           next unless ((frame[row] << column) & 0b10000000).positive?
 
@@ -66,16 +80,8 @@ class LED_Matrix
           RPi::GPIO.set_high @columns[column]
         end
       end
-
-      time_current = Process.clock_gettime(Process::CLOCK_MONOTONIC)
-      if time_current - time_start > delay
-        sleep delay # Adds a little break between letters
-        break
-      end
-    end
+	
   end
-
-  private
 
   def read_json(json_file)
     directory = __dir__

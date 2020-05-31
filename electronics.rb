@@ -22,7 +22,7 @@ matrix = LED_Matrix.new rows, columns
 
 begin
   loop do
-    matrix.string 'Hello', 0.5
+    matrix.string 'Darling I can read numbers in binary', 0.5
   end
 rescue SignalException => e
   clear_board
